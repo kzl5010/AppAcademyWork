@@ -1,0 +1,25 @@
+<h1> <%= @post.title %> </h1>
+
+<br>
+<p> Content
+  <br>
+  <%= @post.content %>
+  <br>
+</p>
+
+<%= link_to "Comment", new_post_comment_url(@post.id) %>
+<br>
+
+
+<ul>
+  <% comments_by_parent = @post.comments_by_parent %>
+  <% comments_by_parent[nil].each do |top_level_comment| %>
+    <li>
+      <%= render("comments/comment",
+                 comment: top_level_comment,
+                 comments_by_parent: comments_by_parent) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Edit", edit_post_url(@post) if @post.author == current_user %>

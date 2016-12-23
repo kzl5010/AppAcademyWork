@@ -1,0 +1,17 @@
+<h1> <%= @sub.name %> </h1>
+
+<br>
+<p> Description
+  <br>
+  <%= @sub.description %>
+
+  <br>
+</p>
+
+<%= link_to "Create Post", new_post_url unless current_user.nil? %>
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li><%= link_to post.title, post %></li>
+  <% end %> 
+</ul>
+<%= link_to "Edit", edit_sub_url(@sub) if @sub.moderator == current_user %>

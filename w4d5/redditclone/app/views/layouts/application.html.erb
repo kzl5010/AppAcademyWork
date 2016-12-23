@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redditclone</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <% if logged_in? %>
+    <p> <%= current_user.username %>
+      <%= button_to "Sign out", session_url, method: :delete %> <br> 
+      <%= link_to "Create a sub!", new_sub_url %> <br>
+      <%= link_to "All Subs", subs_url %>
+  <% end %>
+
+<%= yield %>
+
+</body>
+</html>
